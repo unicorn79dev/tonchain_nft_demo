@@ -1,7 +1,7 @@
 // import { useTonConnect } from "./hooks/useTonConnect";
 import { useTonClubNFT } from "./hooks/useTonClubNFT";
 import Header from "./component/Header";
-import NFTItem from "./component/NFT";
+// import NFTItem from "./component/NFT";
 // import WebApp from "@twa-dev/sdk";
 // import { fetchData } from "./hooks/useTonClubNFT";
 // import eruda from "eruda";
@@ -19,11 +19,11 @@ const App = () => {
     owner,
     collectionData,
     // collectionContent,
-    NFTItems,
+    // NFTItems,
     transferNFT,
     mintNFT,
   } = useTonClubNFT();
-  let index = 0;
+  // let index = 0;
   const connectionRestored = useIsConnectionRestored();
   if (!connectionRestored) {
     return <h1 className="text-center">Please wait...</h1>;
@@ -38,11 +38,16 @@ const App = () => {
               <b className="text-[20px]">Info of NFT Collection </b>
             </div>
             <div>
-              <b>Address: </b> {address}
+              <b>Address: </b>{" "}
+              {address
+                ? `${address.slice(0, 10)} ... ${address.slice(address.length - 10)}`
+                : "Loading..."}
             </div>
             <div>
               <b>Owner: </b>
-              {owner ? owner : "Loading..."}
+              {owner
+                ? `${owner.slice(0, 10)} ... ${owner.slice(owner.length - 10)}`
+                : "Loading..."}
             </div>
             <div>
               <b>NFT items: </b>
@@ -52,7 +57,6 @@ const App = () => {
             </div>
             <hr className="mt-3 mb-3" />
             <div className="gap-3 flex md:flex-row flex-col">
-
               <input
                 className="rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
                 placeholder="Amount of mintNFTs"
@@ -80,7 +84,7 @@ const App = () => {
                 onChange={(ev) => setAmount(parseInt(ev.target.value))}
                 // value={amount}
               ></input>
-               <button
+              <button
                 className="px-5 bg-[#3069ff] hover:bg-[#4076ff] py-1 rounded-lg text-white"
                 onClick={() => transferNFT(receiver, amount)}
               >
@@ -89,7 +93,7 @@ const App = () => {
             </div>
           </div>
         </div>
-        <hr className="mb-5" />
+        {/* <hr className="mb-5" />
         <div className="flex flex-wrap gap-2 justify-center">
           {NFTItems.map((val: any) => {
             index++;
@@ -104,7 +108,7 @@ const App = () => {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   );

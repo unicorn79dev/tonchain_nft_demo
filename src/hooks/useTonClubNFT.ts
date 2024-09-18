@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NftCollection } from "../contracts/HypersonicNFT";
-import { NftItem } from "../contracts/NFTItem";
+// import { NftItem } from "../contracts/NFTItem";
 import { useTonClient } from "./useTonClient";
 import { useAsyncInitialize } from "./useAsyncInitialize";
 import { useTonConnect } from "./useTonConnect";
@@ -27,7 +27,7 @@ export function useTonClubNFT() {
   const [collectionOwner, setOwner] = useState<null | string>();
   const [collectionData, setCollectionData] = useState<any>();
   const [collectionContent, setCollectionContent] = useState<any>();
-  const [NFTItems, setNFTitems] = useState<any>([]);
+  // const [NFTItems, setNFTitems] = useState<any>([]);
 
   const client = useTonClient();
   const { sender } = useTonConnect();
@@ -51,28 +51,28 @@ export function useTonClubNFT() {
     setCollectionData(collectionData);
     setCollectionContent(collection_content);
 
-    const content =
-      "https://ipfs.filebase.io/ipfs/Qmcys3NyGWBW7NMgVwsV1zky6yvEQ595SgtNdLS5EU2Dxw/";
-    const count = parseInt(collectionData?.next_item_index.toString());
-    const data: any[] = [];
-    for (let i = 0; i < count; i++) {
-      console.log("data=>", i);
-      let contentUrl = content + i + ".json";
-      if (client) {
-        const contract = await NftItem.fromInit(
-          collectionData.owner_address,
-          nftCollection.address,
-          BigInt(i)
-        );
-        const NFTItemContract = client.open(
-          contract
-        ) as OpenedContract<NftItem>;
-        const nft_data = await fetchData(contentUrl);
-        const NFTowner = await NFTItemContract.getOwner();
-        data.push({ ...nft_data, owner: NFTowner.toString() });
-      }
-    }
-    setNFTitems(data);
+    // const content =
+    //   "https://ipfs.filebase.io/ipfs/Qmcys3NyGWBW7NMgVwsV1zky6yvEQ595SgtNdLS5EU2Dxw/";
+    // const count = parseInt(collectionData?.next_item_index.toString());
+    // const data: any[] = [];
+    // for (let i = 0; i < count; i++) {
+    //   console.log("data=>", i);
+    //   let contentUrl = content + i + ".json";
+    //   if (client) {
+    //     const contract = await NftItem.fromInit(
+    //       collectionData.owner_address,
+    //       nftCollection.address,
+    //       BigInt(i)
+    //     );
+    //     const NFTItemContract = client.open(
+    //       contract
+    //     ) as OpenedContract<NftItem>;
+    //     const nft_data = await fetchData(contentUrl);
+    //     const NFTowner = await NFTItemContract.getOwner();
+    //     data.push({ ...nft_data, owner: NFTowner.toString() });
+    //   }
+    // }
+    // setNFTitems(data);
   }
 
   useEffect(() => {
@@ -84,7 +84,7 @@ export function useTonClubNFT() {
     owner: collectionOwner,
     collectionData,
     collectionContent,
-    NFTItems,
+    // NFTItems,
     mintNFT: async (amount: number) => {
       do {
         if (amount <= 50) {
