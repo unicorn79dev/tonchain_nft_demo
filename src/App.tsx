@@ -18,6 +18,7 @@ const App = () => {
     address,
     owner,
     collectionData,
+    transferedNFT,
     // collectionContent,
     // NFTItems,
     transferNFT,
@@ -54,6 +55,10 @@ const App = () => {
               {collectionData
                 ? collectionData?.next_item_index.toString()
                 : "Loading..."}
+            </div>
+            <div>
+              <b>Transferred NFT items: </b>
+              {transferedNFT ? transferedNFT : "Loading"}
             </div>
             <hr className="mt-3 mb-3" />
             <div className="gap-3 flex md:flex-row flex-col">
