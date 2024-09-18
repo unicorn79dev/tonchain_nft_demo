@@ -63,34 +63,34 @@ const App = () => {
             <hr className="mt-3 mb-3" />
             <div className="gap-3 flex md:flex-row flex-col">
               <input
-                className="rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
+                className="md:w-4/5 w-full  rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
                 placeholder="Amount of mintNFTs"
                 onChange={(ev) => setMintAmount(parseInt(ev.target.value))}
                 // value={amount}
               ></input>
               <button
-                className="px-5 bg-[#3069ff] hover:bg-[#4076ff] py-1 rounded-lg text-white"
+                className="md:w-1/5 w-full px-5 bg-[#3069ff] hover:bg-[#4076ff] py-1 rounded-lg text-white"
                 onClick={() => mintNFT(mintAmount)}
               >
-                Mint NFT
+                Mint
               </button>
             </div>
             <hr className="mt-3 mb-3" />
             <div className="flex gap-3  md:flex-row flex-col">
               <input
-                className="rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
+                className="md:w-3/5 w-full rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
                 placeholder="Receiver's Address"
                 onChange={(ev) => setReceiver(ev.target.value)}
                 value={receiver}
               ></input>
               <input
-                className="rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
+                className="md:w-1/5 w-full rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
                 placeholder="Amount of NFTs"
                 onChange={(ev) => setAmount(parseInt(ev.target.value))}
                 // value={amount}
               ></input>
               <button
-                className="px-5 bg-[#3069ff] hover:bg-[#4076ff] py-1 rounded-lg text-white"
+                className="md:w-1/5 w-full px-5 bg-[#3069ff] hover:bg-[#4076ff] py-1 rounded-lg text-white"
                 onClick={() => transferNFT(receiver, amount)}
               >
                 Transfer
