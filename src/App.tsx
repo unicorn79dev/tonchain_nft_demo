@@ -70,7 +70,12 @@ const App = () => {
               ></input>
               <button
                 className="md:w-1/5 w-full px-5 bg-[#3069ff] hover:bg-[#4076ff] py-1 rounded-lg text-white"
-                onClick={() => mintNFT(mintAmount)}
+                onClick={ () => {
+                  if(mintAmount > 75)
+                    alert("Please inpute less than 75");
+                  else
+                    mintNFT(mintAmount)
+                }}
               >
                 Mint
               </button>
@@ -91,7 +96,12 @@ const App = () => {
               ></input>
               <button
                 className="md:w-1/5 w-full px-5 bg-[#3069ff] hover:bg-[#4076ff] py-1 rounded-lg text-white"
-                onClick={() => transferNFT(receiver, amount)}
+                onClick={() =>{
+                  if(amount > 85)
+                    alert("Please inpute less than 85");
+                  else
+                    transferNFT(receiver, amount)
+                }}
               >
                 Transfer
               </button>
