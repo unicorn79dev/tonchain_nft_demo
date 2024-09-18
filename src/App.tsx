@@ -64,7 +64,7 @@ const App = () => {
             <div className="gap-3 flex md:flex-row flex-col">
               <input
                 className="md:w-4/5 w-full  rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
-                placeholder="Amount of mintNFTs"
+                placeholder="Amount of mintNFTs:"
                 onChange={(ev) => setMintAmount(parseInt(ev.target.value))}
                 // value={amount}
               ></input>
@@ -79,13 +79,13 @@ const App = () => {
             <div className="flex gap-3  md:flex-row flex-col">
               <input
                 className="md:w-3/5 w-full rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
-                placeholder="Receiver's Address"
+                placeholder="Receiver's Address:"
                 onChange={(ev) => setReceiver(ev.target.value)}
                 value={receiver}
               ></input>
               <input
                 className="md:w-1/5 w-full rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
-                placeholder="Amount of NFTs"
+                placeholder="Amount:"
                 onChange={(ev) => setAmount(parseInt(ev.target.value))}
                 // value={amount}
               ></input>
