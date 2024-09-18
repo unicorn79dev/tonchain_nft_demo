@@ -14,6 +14,8 @@ const App = () => {
   const [receiver, setReceiver] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
   const [mintAmount, setMintAmount] = useState<number>(0);
+  const [showToast, setShowToast] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const {
     address,
     owner,
@@ -41,7 +43,9 @@ const App = () => {
             <div>
               <b>Address: </b>{" "}
               {address
-                ? `${address.slice(0, 10)} ... ${address.slice(address.length - 10)}`
+                ? `${address.slice(0, 10)} ... ${address.slice(
+                    address.length - 10
+                  )}`
                 : "Loading..."}
             </div>
             <div>
@@ -70,11 +74,17 @@ const App = () => {
               ></input>
               <button
                 className="md:w-1/5 w-full px-5 bg-[#3069ff] hover:bg-[#4076ff] py-1 rounded-lg text-white"
-                onClick={ () => {
-                  if(mintAmount > 75)
-                    alert("Please inpute less than 75");
-                  else
-                    mintNFT(mintAmount)
+                onClick={() => {
+                  if (mintAmount > 75) {
+                    setShowToast(true);
+                    setIsVisible(true);
+                    setTimeout(() => {
+                      setIsVisible(false);
+                      setTimeout(() => {
+                        setShowToast(false);
+                      }, 300);
+                    }, 2500);
+                  } else mintNFT(mintAmount);
                 }}
               >
                 Mint
@@ -92,15 +102,20 @@ const App = () => {
                 className="md:w-1/5 w-full rounded-lg border-2 border-[#d5d5d5] px-2 text-[grey]"
                 placeholder="Amount:"
                 onChange={(ev) => setAmount(parseInt(ev.target.value))}
-                // value={amount}
               ></input>
               <button
                 className="md:w-1/5 w-full px-5 bg-[#3069ff] hover:bg-[#4076ff] py-1 rounded-lg text-white"
-                onClick={() =>{
-                  if(amount > 85)
-                    alert("Please inpute less than 85");
-                  else
-                    transferNFT(receiver, amount)
+                onClick={() => {
+                  if (amount > 75) {
+                    setShowToast(true);
+                    setIsVisible(true);
+                    setTimeout(() => {
+                      setIsVisible(false);
+                      setTimeout(() => {
+                        setShowToast(false);
+                      }, 300);
+                    }, 2500);
+                  } else transferNFT(receiver, amount);
                 }}
               >
                 Transfer
@@ -125,6 +140,31 @@ const App = () => {
           })}
         </div> */}
       </div>
+      {showToast && (
+        <div
+          className={`fixed top-10 right-5 w-80 bg-red-500 text-white p-4 rounded shadow-lg transform transition-all duration-300 ease-in-out 
+                                ${
+                                  isVisible
+                                    ? "translate-y-0 opacity-100"
+                                    : "translate-y-0 opacity-0"
+                                }`}
+          role="alert"
+        >
+          <strong className="font-bold">Error!</strong>
+          <span className="block sm:inline"> Input an amount less than 75</span>
+          <button
+            className="absolute top-0 right-0 p-1 text-white hover:text-gray-200"
+            onClick={() => {
+              setIsVisible(false);
+              setTimeout(() => {
+                setShowToast(false);
+              }, 300); // Match this duration with the exit animation duration
+            }}
+          >
+            &times;
+          </button>
+        </div>
+      )}
     </div>
   );
 };

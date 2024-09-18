@@ -93,7 +93,7 @@ export function useTonClubNFT() {
       await nftCollection?.send(
         sender,
         {
-          value: toNano((amount * 0.05).toString()),
+          value: toNano((amount * 0.05)),
         },
         {
           $$type: "MultiMint",
@@ -107,7 +107,7 @@ export function useTonClubNFT() {
       await nftCollection?.send(
         sender,
         {
-          value: toNano((amount * 0.05).toString()),
+          value: toNano((amount * 0.05)),
         },
         {
           $$type: "InitialTransfer",
