@@ -14,7 +14,7 @@ const NFTItem: React.FC<NFTProps> = ({image,name,description,owner}) => {
       <div className="px-3 py-2 ">
         <div className="text-[10px]"><b>Name:</b> {name}</div>
         <hr />
-        <div className="text-[10px]"><b>Description:</b> {description}</div>
+        <div className="text-[10px]"><b>Description:</b> {description.slice(0,50) + " ..."}</div>
         <hr />
         <div className="text-[10px]"><b>Owner:</b> {owner.slice(0,10)}...{owner.slice(owner.length-10, owner.length)}</div>
       </div>

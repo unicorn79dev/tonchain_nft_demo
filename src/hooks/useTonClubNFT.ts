@@ -51,11 +51,12 @@ export function useTonClubNFT() {
     setCollectionData(collectionData);
     setCollectionContent(collection_content);
 
-    const content = "https://ipfs.filebase.io/ipfs/Qmcys3NyGWBW7NMgVwsV1zky6yvEQ595SgtNdLS5EU2Dxw/";
+    const content =
+      "https://ipfs.filebase.io/ipfs/Qmcys3NyGWBW7NMgVwsV1zky6yvEQ595SgtNdLS5EU2Dxw/";
     const count = parseInt(collectionData?.next_item_index.toString());
     const data: any[] = [];
     for (let i = 0; i < count; i++) {
-      console.log("data=>",i);
+      console.log("data=>", i);
       let contentUrl = content + i + ".json";
       if (client) {
         const contract = await NftItem.fromInit(
@@ -85,31 +86,64 @@ export function useTonClubNFT() {
     collectionContent,
     NFTItems,
     mintNFT: async (amount: number) => {
-      await nftCollection?.send(
-        sender,
-        {
-          value: toNano((amount * 0.05).toString()),
-        },
-        {
-          $$type: "MultiMint",
-          amount: BigInt(amount),
+      do {
+        if (amount <= 50) {
+          await nftCollection?.send(
+            sender,
+            {
+              value: toNano((amount * 0.05).toString()),
+            },
+            {
+              $$type: "MultiMint",
+              amount: BigInt(amount),
+            }
+          );
+          return;
         }
-      );
+        await nftCollection?.send(
+          sender,
+          {
+            value: toNano((50 * 0.05).toString()),
+          },
+          {
+            $$type: "MultiMint",
+            amount: BigInt(50),
+          }
+        );
+        amount -= 50;
+      } while (1);
       await sleep(6000);
       getData();
     },
     transferNFT: async (receiver: string, amount: number) => {
-      await nftCollection?.send(
-        sender,
-        {
-          value: toNano((amount * 0.05).toString()),
-        },
-        {
-          $$type: "InitialTransfer",
-          newOwner: Address.parse(receiver),
-          amount: BigInt(amount),
+      do {
+        if (amount <= 50) {
+          await nftCollection?.send(
+            sender,
+            {
+              value: toNano((amount * 0.05).toString()),
+            },
+            {
+              $$type: "InitialTransfer",
+              newOwner: Address.parse(receiver),
+              amount: BigInt(amount),
+            }
+          );
+          return;
         }
-      );
+        await nftCollection?.send(
+          sender,
+          {
+            value: toNano((50 * 0.05).toString()),
+          },
+          {
+            $$type: "InitialTransfer",
+            newOwner: Address.parse(receiver),
+            amount: BigInt(50),
+          }
+        );
+        amount -= 50;
+      } while (1);
       await sleep(6000);
       getData();
     },
