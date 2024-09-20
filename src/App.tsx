@@ -21,12 +21,9 @@ const App = () => {
     owner,
     collectionData,
     transferedNFT,
-    // collectionContent,
-    // NFTItems,
     transferNFT,
     mintNFT,
   } = useTonClubNFT();
-  // let index = 0;
   const connectionRestored = useIsConnectionRestored();
   if (!connectionRestored) {
     return <h1 className="text-center">Please wait...</h1>;
@@ -123,22 +120,6 @@ const App = () => {
             </div>
           </div>
         </div>
-        {/* <hr className="mb-5" />
-        <div className="flex flex-wrap gap-2 justify-center">
-          {NFTItems.map((val: any) => {
-            index++;
-            return (
-              <div key={index}>
-                <NFTItem
-                  image={val.image}
-                  name={val.name}
-                  description={val.description}
-                  owner={val.owner}
-                />
-              </div>
-            );
-          })}
-        </div> */}
       </div>
       {showToast && (
         <div
